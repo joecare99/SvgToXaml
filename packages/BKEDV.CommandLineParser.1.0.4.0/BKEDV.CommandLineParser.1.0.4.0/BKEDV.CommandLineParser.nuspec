@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>BKEDV.CommandLineParser</id>
+    <version>1.0.4.0</version>
+    <title>CommandLineParser</title>
+    <authors>BKEDV</authors>
+    <owners>BKEDV</owners>
+    <licenseUrl>http://www.bkedv.de</licenseUrl>
+    <projectUrl>http://www.bkedv.de</projectUrl>
+    <iconUrl>http://www.bkedv.de</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Enables powerful commandline paramter handling</description>
+    <releaseNotes>Current version</releaseNotes>
+    <copyright>Copyright 2013 BKEDV</copyright>
+    <tags>Commandline Parser</tags>
+    <dependencies />
+  </metadata>
+</package>

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Linq;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SvgConverterTest
 {
+    [TestClass]
     public class T4Methods
     {
-        [Test]
+        [TestMethod]
         public void Test_KeysFromXaml()
         {
             string nameSpaceName;

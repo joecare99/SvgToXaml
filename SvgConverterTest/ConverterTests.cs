@@ -7,14 +7,14 @@ using System.Windows.Media;
 using System.Xml.Linq;
 using System.Xml.XPath;
 using FluentAssertions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SharpVectors.Converters;
 using SharpVectors.Renderers.Wpf;
 using SvgConverter;
 
 namespace SvgConverterTest
 {
-    [TestFixture]
+    [TestClass]
     public class ConverterTests
     {
         private void CheckXamlOutput(string xaml, string testSuffix, bool check = true, [CallerMemberName] string testName = null)
@@ -38,9 +38,10 @@ namespace SvgConverterTest
             }
         }
 
-        [TestCase("TestFiles\\cloud-3-icon.svg")]
-        [TestCase("TestFiles\\3d-view-icon.svg")]
-        [TestCase("TestFiles\\JOG.svg")]
+        [DataTestMethod]
+        [DataRow("TestFiles\\cloud-3-icon.svg")]
+        [DataRow("TestFiles\\3d-view-icon.svg")]
+        [DataRow("TestFiles\\JOG.svg")]
         public void ConvertFileToDrawingGroup(string filename)
         {
             var settings = new WpfDrawingSettings
@@ -55,7 +56,7 @@ namespace SvgConverterTest
             CheckXamlOutput(xaml, Path.GetFileName(filename));
         }
 
-        [Test]
+        [TestMethod]
         public void ConvertFileToDrawingGroup2()
         {
             var settings = new WpfDrawingSettings
@@ -69,9 +70,10 @@ namespace SvgConverterTest
             CheckXamlOutput(xaml);
         }
 
-        [TestCase("TestFiles\\cloud-3-icon.svg")]
-        [TestCase("TestFiles\\3d-view-icon.svg")]
-        [TestCase("TestFiles\\JOG.svg")]
+        [DataTestMethod]
+        [DataRow("TestFiles\\cloud-3-icon.svg")]
+        [DataRow("TestFiles\\3d-view-icon.svg")]
+        [DataRow("TestFiles\\JOG.svg")]
         public void ConvertFileToDrawingImage(string filename)
         {
             var settings = new WpfDrawingSettings
@@ -85,8 +87,9 @@ namespace SvgConverterTest
             CheckXamlOutput(xaml, Path.GetFileName(filename));
         }
 
-        [TestCase("TestFiles\\cloud-3-icon.svg")]
-        [TestCase("TestFiles\\JOG.svg")]
+        [DataTestMethod]
+        [DataRow("TestFiles\\cloud-3-icon.svg")]
+        [DataRow("TestFiles\\JOG.svg")]
         public void ConvertFileToDrawingGroupWithRuntime(string filename)
         {
             var settings = new WpfDrawingSettings
@@ -100,7 +103,7 @@ namespace SvgConverterTest
             CheckXamlOutput(xaml, Path.GetFileName(filename));
         }
 
-        [Test]
+        [TestMethod]
         public void SvgDirToXamlTest_withNamePrefix()
         {
             var settings = new WpfDrawingSettings
@@ -114,7 +117,7 @@ namespace SvgConverterTest
             CheckXamlOutput(xaml);
         }
 
-        [Test]
+        [TestMethod]
         public void SvgDirToXamlTest_withUseCompResKey()
         {
             var settings = new WpfDrawingSettings
@@ -128,7 +131,7 @@ namespace SvgConverterTest
             CheckXamlOutput(xaml);
         }
 
-        [Test]
+        [TestMethod]
         public void SvgDirToXaml_with_defaultSettingsTest()
         {
             var resKeyInfo = new ResKeyInfo { XamlName = "Test", Prefix = "NamePrefix" };
@@ -136,14 +139,14 @@ namespace SvgConverterTest
             CheckXamlOutput(xaml);
         }
 
-        [Test, STAThread]
+        [TestMethod, STAThread]
         public void Handwheel() //Full integrated with all optimizations
         {
             var resKeyInfo = new ResKeyInfo { Prefix = "Prefix" };
             var xaml = ConverterLogic.SvgFileToXaml("TestFiles\\Handwheel.svg", ResultMode.DrawingGroup, resKeyInfo, false, null);
             CheckXamlOutput(xaml);
         }
-        [Test, STAThread]
+        [TestMethod, STAThread]
         public void Handwheel1() //pure svg# without any modifications
         {
             var fileReader = new FileSvgReader(null);
@@ -152,7 +155,7 @@ namespace SvgConverterTest
             var xaml = writer.Save(drawing);
             CheckXamlOutput(xaml);
         }
-        [Test, STAThread]
+        [TestMethod, STAThread]
         public void Handwheel2() //integrated conversion, manual writing
         {
             var drawing = SvgConverter.ConverterLogic.SvgFileToWpfObject("TestFiles\\Handwheel.svg", null);
@@ -160,7 +163,7 @@ namespace SvgConverterTest
             var xaml = writer.Save(drawing);
             CheckXamlOutput(xaml);
         }
-        [Test, STAThread]
+        [TestMethod, STAThread]
         public void Handwheel3() //integrated conversion, integrated writing
         {
             var drawing = ConverterLogic.SvgFileToWpfObject("TestFiles\\Handwheel.svg", null);
@@ -197,7 +200,7 @@ namespace SvgConverterTest
             }
         }
 
-        [Test]
+        [TestMethod]
         public void BuildDrawingGroupName_returns_simpleName()
         {
             var resKeyInfo = new ResKeyInfo
@@ -207,7 +210,7 @@ namespace SvgConverterTest
             };
             ConverterLogic.BuildDrawingGroupName("ElementName", resKeyInfo).Should().Be("ElementNameDrawingGroup");
         }
-        [Test]
+        [TestMethod]
         public void BuildDrawingGroupName_returns_prefixedName()
         {
             var resKeyInfo = new ResKeyInfo
@@ -217,7 +220,7 @@ namespace SvgConverterTest
             };
             ConverterLogic.BuildDrawingGroupName("ElementName", resKeyInfo).Should().Be("NamePrefix_ElementNameDrawingGroup");
         }
-        [Test]
+        [TestMethod]
         public void BuildDrawingGroupName_returns_prefixedName_using_CompResKey()
         {
             var resKeyInfo = new ResKeyInfo
@@ -231,7 +234,7 @@ namespace SvgConverterTest
             Console.WriteLine(key);
             key.Should().Be("{x:Static NameSpaceName:XamlName.ElementNameDrawingGroupKey}");
         }
-        [Test]
+        [TestMethod]
         public void BuildDrawingImageName_returns_simpleName()
         {
             var resKeyInfo = new ResKeyInfo
@@ -241,13 +244,13 @@ namespace SvgConverterTest
             };
             ConverterLogic.BuildDrawingImageName("ElementName", resKeyInfo).Should().Be("ElementNameDrawingImage");
         }
-        [Test]
+        [TestMethod]
         public void BuildDrawingImageName_returns_prefixedName()
         {
             ConverterLogic.BuildDrawingImageName("ElementName", ResKeyInfoUseNamePrefix).Should().Be("NamePrefix_ElementNameDrawingImage");
         }
 
-        [Test]
+        [TestMethod]
         public void BuildDrawingImageName_returns_prefixedName_using_CompResKey()
         {
             var key = ConverterLogic.BuildDrawingImageName("ElementName", ResKeyInfoUseCompResKey);
@@ -255,7 +258,7 @@ namespace SvgConverterTest
             key.Should().Be("{x:Static NameSpaceName:XamlName.ElementNameDrawingImageKey}");
         }
 
-        [Test]
+        [TestMethod]
         public void BuildResKeyReference_Static()
         {
             var actual = ConverterLogic.BuildResKeyReference("NamePrefix_ElementName", false);
@@ -263,7 +266,7 @@ namespace SvgConverterTest
             actual.Should().Be("{StaticResource NamePrefix_ElementName}");
         }
 
-        [Test]
+        [TestMethod]
         public void BuildResKeyReference_usingCompResKey()
         {
             var actual = ConverterLogic.BuildResKeyReference("{x:Static NameSpaceName:XamlName.ElementName}",  true);
@@ -271,18 +274,18 @@ namespace SvgConverterTest
             actual.Should().Be("{DynamicResource {x:Static NameSpaceName:XamlName.ElementName}}");
         }
 
-        [Test]
+        [TestMethod]
         public void GetElemNameFromResKey_NamePrefix()
         {
             ConverterLogic.GetElemNameFromResKey("NamePrefix_ElementName", ResKeyInfoUseNamePrefix).Should().Be("ElementName");
         }
-        [Test]
+        [TestMethod]
         public void GetElemNameFromResKey_CompResKey()
         {
             ConverterLogic.GetElemNameFromResKey("{x:Static NameSpaceName:XamlName.ElementNameKey}", ResKeyInfoUseCompResKey).Should().Be("ElementName");
         }
 
-        [Test]
+        [TestMethod]
         public void GetCorrectClippingElement()
         {
             var doc = XDocument.Load(@"TestFiles\xamlUntidy.xaml");
@@ -302,8 +305,8 @@ namespace SvgConverterTest
                 Console.WriteLine();
             }
 
-            clipElements[0].Item2.ShouldBeEquivalentTo(new Rect(0,0,40,40));
-            clipElements[1].Item2.ShouldBeEquivalentTo(new Rect(0,0,45,34));
+            clipElements[0].Item2.Should().BeEquivalentTo(new Rect(0,0,40,40));
+            clipElements[1].Item2.Should().BeEquivalentTo(new Rect(0,0,45,34));
             //..
         }
 

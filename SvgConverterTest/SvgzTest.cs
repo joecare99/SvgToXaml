@@ -6,13 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SvgConverterTest
 {
     public class SvgzTest
     {
-        [Test]
+        [TestMethod]
         public void TestUnzip()
         {
             var fs = File.OpenRead(@".\TestFiles\example.svgz");

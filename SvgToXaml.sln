@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgConverter", "SvgConverter\SvgConverter.csproj", "{D1B291FE-A21B-4C27-930D-39CC2C963E13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SvgConverter", "SvgConverter\SvgConverter.csproj", "{D1B291FE-A21B-4C27-930D-39CC2C963E13}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgConverterTest", "SvgConverterTest\SvgConverterTest.csproj", "{B4508A49-AE03-4427-980F-15FAF7B0CC8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvgToXaml", "SvgToXaml\SvgToXaml.csproj", "{0CAF3717-683D-45D3-94A1-CFA4828EF67B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IconResources", "IconResources\IconResources.csproj", "{618E080B-86D8-4F12-B141-EFFE222D6E9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IconResources", "IconResources\IconResources.csproj", "{618E080B-86D8-4F12-B141-EFFE222D6E9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfDemoApp", "WpfDemoApp\WpfDemoApp.csproj", "{1582B923-7D2E-446E-9871-F7E1DB8D911F}"
 EndProject
@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projektmappenelemente", "Pr
 	ProjectSection(SolutionItems) = preProject
 		SvgToXaml.props = SvgToXaml.props
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommandLineParser_win", "..\CommandLineParser\CommandLineParser_win.csproj", "{6E2080C4-10E1-4A42-B218-D329E14B3654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -44,6 +46,10 @@ Global
 		{1582B923-7D2E-446E-9871-F7E1DB8D911F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1582B923-7D2E-446E-9871-F7E1DB8D911F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1582B923-7D2E-446E-9871-F7E1DB8D911F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E2080C4-10E1-4A42-B218-D329E14B3654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E2080C4-10E1-4A42-B218-D329E14B3654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E2080C4-10E1-4A42-B218-D329E14B3654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E2080C4-10E1-4A42-B218-D329E14B3654}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
