@@ -57,12 +57,12 @@ namespace SvgConverter
                 var htmlFilePath = Path.Combine(inputdir,
                     Path.GetFileNameWithoutExtension(outputname));
                 var files = ConverterLogic.SvgFilesFromFolder(inputdir);
-                BuildHtmlBrowseFile(files, htmlFilePath);
+                _BuildHtmlBrowseFile(files, htmlFilePath);
             }
             return 0; //no Error
         }
 
-        private static void BuildHtmlBrowseFile(IEnumerable<string> files, string outputFilename, int size = 128)
+        private static void _BuildHtmlBrowseFile(IEnumerable<string> files, string outputFilename, int size = 128)
         {
             //<html>
             //    <head>

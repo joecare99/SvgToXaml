@@ -12,11 +12,13 @@ namespace SvgConverter
         }
         public static int HandleCommandLine(string[] args)
         {
-            var clp = new CommandLineParser { SkipCommandsWhenHelpRequested = true };
-
-            clp.Target = new CmdLineTarget();
-            clp.Header = "SvgToXaml - Tool to convert SVGs to a Dictionary\r\n(c) 2015 Bernd Klaiber";
-            clp.LogErrorsToConsole = true;
+            var clp = new CommandLineParser
+            {
+                SkipCommandsWhenHelpRequested = true,
+                Target = new CmdLineTarget(),
+                Header = "SvgToXaml - Tool to convert SVGs to a Dictionary\r\n(c) 2015 Bernd Klaiber",
+                LogErrorsToConsole = true
+            };
             try
             {
                 return clp.ParseArgs(args, true);
